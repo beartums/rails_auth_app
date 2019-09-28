@@ -28,7 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
     #assert flash.nil?
     assert_select "div.flash", count: 1
-
+    assert is_logged_in?
 
   end 
 end
