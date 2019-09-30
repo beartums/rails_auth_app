@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
+  include SessionsHelper
+  
   def new
     @user = User.new
   end
   
   def show
     @user = User.find(params[:id])
-    @session_user = current_user
   end 
   
   def create

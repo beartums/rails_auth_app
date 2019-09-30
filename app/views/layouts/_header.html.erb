@@ -1,6 +1,9 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <%= link_to "sample app", root_path, id: "logo" %>
+        <!-- Not sure why I need this, but without it it seems like logged_in? 
+              is not available to the view -->
+        <% @session_user = current_user %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   home_path %></li>
