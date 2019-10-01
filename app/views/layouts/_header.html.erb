@@ -1,3 +1,5 @@
+    <!-- necessary to give every page access to current user???? -->
+    <% @session_user = current_user %>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <%= link_to "sample app", root_path, id: "logo" %>
@@ -6,6 +8,7 @@
         <% @session_user = current_user %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
+            <!--li><%= link_to (@session_user.nil? ? "" : @session_user.email), "#" %></li-->
             <li><%= link_to "Home",   home_path %></li>
             <li><%= link_to "Help",   help_path %></li>
             <% if logged_in? %>
