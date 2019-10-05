@@ -3,13 +3,13 @@ require 'test_helper'
 class UsersLoginTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = users(:test)
+    @user = users(:lana)
   end 
 
   
   test "login with valid info then logout" do
     get login_path
-    post login_path params: {session: { email: @user.email, password: 'aaaaaa' } }
+    post login_path params: {session: { email: @user.email, password: 'password' } }
     assert is_logged_in?
     assert_redirected_to @user
     follow_redirect!
@@ -40,16 +40,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
   
   test "login with remembering" do
-    log_in_as(@user, {password: "aaaaaa", remember_me: '1'})
+    log_in_as(@user, {password: "password", remember_me: '1'})
     assert_not_empty cookies[:remember_token]
     #assert_equal cookies['remember_token'], assigns(:user).remember_token
   end 
   
   test "login without remembering" do 
     # Log in to set the cookie.
-    log_in_as(@user, {password: "aaaaaa", remember_me: '1'})
+    log_in_as(@user, {password: "password", remember_me: '1'})
     # Log in again and verify that the cookie is deleted.
-    log_in_as(@user, {password: "aaaaaa", remember_me: '0'})
+    log_in_as(@user, {password: "password", remember_me: '0'})
     assert_empty cookies[:remember_token]
   end 
   
