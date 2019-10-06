@@ -15,7 +15,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     get users_path
     assert_template "users/index"
     assert_select "div.pagination"
-    User.order("name ASC").paginate(page: 1, per_page: 20).each do |user|
+    User.where(activated: true).order("name ASC")
+            .paginate(page: 1, per_page: 20).each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
       assert_select "a[data-method='delete'][href=?]", user_path(user), count: 0
     end 
@@ -25,7 +26,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     log_in_as(@admin_user)
     get users_path
     assert_template "users/index"
-    User.order("name ASC").paginate(page: 1, per_page: 20).each do |user|
+    User.where(activated: true).order("name ASC")
+          .paginate(page: 1, per_page: 20).each do |user|
       if user != @admin_user
         assert_select "a[data-method='delete'][href=?]", 
                           user_path(user), text: "delete"
