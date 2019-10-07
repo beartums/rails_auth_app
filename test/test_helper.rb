@@ -22,6 +22,10 @@ class ActiveSupport::TestCase
     session[:user_id] = user.id
   end 
   
+  def log_out_user
+    session[:user_id] = nil
+  end 
+  
   class ActionDispatch::IntegrationTest
 
     # Log in as a particular user.
