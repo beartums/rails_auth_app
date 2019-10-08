@@ -6,7 +6,7 @@
     <%= form_with(model: @user, url: password_reset_path(params[:id]),
                   local: true) do |f| %>
       
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
       
       <%= hidden_field_tag :email, @email %>
       <%= hidden_field_tag :token, @token %>
